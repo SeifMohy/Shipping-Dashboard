@@ -12,7 +12,7 @@ const FilteringButtons = () => {
     return classes.filter(Boolean).join(" ");
   }
   return (
-    <div>
+    <div className="mt-1">
       <div className="sm:hidden">
         <label htmlFor="tabs" className="sr-only">
           Select a tab
