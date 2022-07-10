@@ -1,9 +1,9 @@
 import React from 'react'
 
-const filteringButtons = () => {
+const FilteringButtons = () => {
   return (
-    <div>filteringButtons</div>
+    <div>FilteringButtons</div>
   )
 }
 
-export default filteringButtons
+export default FilteringButtons
