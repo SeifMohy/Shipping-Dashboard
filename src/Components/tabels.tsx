@@ -4,7 +4,7 @@ import BottomOver from "./bottomOver";
 //TODO: fix as requested
 const shipments = [
   {
-    OrderNumb: "Lindsay Walton",
+    OrderNumb: "1",
     ShipFrom: "Front-end Developer",
     ShipTo: "lindsay.walton@example.com",
     RequiredShipDate: "Member",
@@ -14,7 +14,7 @@ const shipments = [
     checked: false,
   },
   {
-    OrderNumb: "Lindsay Walton",
+    OrderNumb: "2",
     ShipFrom: "Front-end Developer",
     ShipTo: "lindsay.walton@example.com",
     RequiredShipDate: "Member",
@@ -24,7 +24,7 @@ const shipments = [
     checked: true,
   },
   {
-    OrderNumb: "Lindsay Walton",
+    OrderNumb: "3",
     ShipFrom: "Front-end Developer",
     ShipTo: "lindsay.walton@example.com",
     RequiredShipDate: "Member",
@@ -41,9 +41,19 @@ function classNames(...classes: string[]) {
 
 const Tabels = () => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
+  const [orderInfo, setOrderInfo] = useState([]);
+  function bottomOver(info: any) {
+    //TODO: Type
+    setOpenBottomOver(true);
+    setOrderInfo(info);
+  }
   return (
     <div>
-      <BottomOver openBottomOver={openBottomOver} setOpenBottomOver={setOpenBottomOver} />
+      <BottomOver
+        openBottomOver={openBottomOver}
+        setOpenBottomOver={setOpenBottomOver}
+        orderInfo={orderInfo}
+      />
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center"></div>
         <div className="mt-2 flex flex-col">
@@ -115,7 +125,7 @@ const Tabels = () => {
                         key={shipment.OrderNumb}
                         className={shipment.checked ? "bg-gray-50" : undefined}
                         onClick={() => {
-                          setOpenBottomOver(true);
+                          bottomOver(shipment);
                         }}
                       >
                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">

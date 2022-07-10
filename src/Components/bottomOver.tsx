@@ -5,8 +5,13 @@ import { Dialog, Transition } from "@headlessui/react";
 type Props = {
   openBottomOver: boolean;
   setOpenBottomOver: React.Dispatch<React.SetStateAction<boolean>>;
+  orderInfo: any;
 };
-const BottomOver = ({ openBottomOver, setOpenBottomOver }: Props) => {
+const BottomOver = ({
+  openBottomOver,
+  setOpenBottomOver,
+  orderInfo,
+}: Props) => {
   return (
     <Transition.Root show={openBottomOver} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpenBottomOver}>
@@ -41,11 +46,11 @@ const BottomOver = ({ openBottomOver, setOpenBottomOver }: Props) => {
                         as="h3"
                         className="text-lg leading-6 font-medium text-gray-900"
                       >
-                        Order ID Info
+                        Order {orderInfo.OrderNumb}
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          will have info displayed here
+                          {orderInfo.ShipFrom} / {orderInfo.ShipTo}
                         </p>
                       </div>
                     </div>
