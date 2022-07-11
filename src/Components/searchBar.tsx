@@ -1,9 +1,13 @@
-import React from "react";
+import { useState } from "react";
 import DropDown from "./dropDown";
+import SideOver from "./sideOver";
 
 const SearchBar = () => {
+  const [openSideOver, setOpenSideOver] = useState(false);
+
   return (
     <div>
+      <SideOver openSideOver={openSideOver} setOpenSideOver={setOpenSideOver} />
       <div className="px-2 flex m-2">
         <div className="w-full sm:max-w-xs">
           <label htmlFor="search" className="sr-only">
@@ -22,6 +26,9 @@ const SearchBar = () => {
         <DropDown />
         <button
           type="button"
+          onClick={() => {
+            setOpenSideOver(true);
+          }}
           className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           FILTER

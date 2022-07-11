@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BottomOver from "./bottomOver";
 
+
 //TODO: fix as requested
 const shipments = [
   {
@@ -146,7 +147,6 @@ const Tabels = () => {
                               ? "text-indigo-600"
                               : "text-gray-900"
                           )}
-                          onClick={() => {}}
                         >
                           {shipment.OrderNumb}
                         </td>
