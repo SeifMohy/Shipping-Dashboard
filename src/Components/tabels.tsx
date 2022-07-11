@@ -1,37 +1,52 @@
 import React, { useState } from "react";
 import BottomOver from "./bottomOver";
 
-
 //TODO: fix as requested
+
+const headers = [
+  "Order ID",
+  "Order Date",
+  "Ship From",
+  "Ship To",
+  "Order Status",
+  "Shipper Reference",
+  "Shipment ID",
+];
 const shipments = [
   {
-    OrderNumb: "1",
-    ShipFrom: "Front-end Developer",
-    ShipTo: "lindsay.walton@example.com",
-    RequiredShipDate: "Member",
-    Status: "Entred",
-    ShipperReference: "shipper",
-    ShipmentNumb: "120",
-    checked: false,
-  },
-  {
-    OrderNumb: "2",
-    ShipFrom: "Front-end Developer",
-    ShipTo: "lindsay.walton@example.com",
-    RequiredShipDate: "Member",
-    Status: "Entred",
-    ShipperReference: "shipper",
-    ShipmentNumb: "120",
+    OrderId: "1",
+    OrderDate: "11/12/2022",
+    ShipFrom:
+      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
+    ShipTo:
+      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
+    Status: "Entered",
+    ShipperReference: "",
+    ShipmentNumb: "",
     checked: true,
   },
   {
-    OrderNumb: "3",
-    ShipFrom: "Front-end Developer",
-    ShipTo: "lindsay.walton@example.com",
-    RequiredShipDate: "Member",
-    Status: "Entred",
-    ShipperReference: "shipper",
-    ShipmentNumb: "120",
+    OrderId: "1",
+    OrderDate: "11/12/2022",
+    ShipFrom:
+      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
+    ShipTo:
+      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
+    Status: "Entered",
+    ShipperReference: "",
+    ShipmentNumb: "",
+    checked: false,
+  },
+  {
+    OrderId: "1",
+    OrderDate: "11/12/2022",
+    ShipFrom:
+      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
+    ShipTo:
+      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
+    Status: "Entered",
+    ShipperReference: "",
+    ShipmentNumb: "",
     checked: false,
   },
 ];
@@ -76,54 +91,22 @@ const Tabels = () => {
                           // onChange={toggleAll}
                         />
                       </th>
-                      <th
-                        scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                      >
-                        Order #
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                      >
-                        Ship From
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                      >
-                        Ship To
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                      >
-                        Required Ship Date
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                      >
-                        Status
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                      >
-                        Shipper Reference
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                      >
-                        Shipment #
-                      </th>
+                      {headers.map((header: string) => {
+                        return (
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            {header}
+                          </th>
+                        );
+                      })}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
                     {shipments.map((shipment) => (
                       <tr
-                        key={shipment.OrderNumb}
+                        key={shipment.OrderId}
                         className={shipment.checked ? "bg-gray-50" : undefined}
                         onClick={() => {
                           bottomOver(shipment);
@@ -136,7 +119,7 @@ const Tabels = () => {
                           <input
                             type="checkbox"
                             className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
-                            value={shipment.OrderNumb}
+                            value={shipment.OrderId}
                             checked={shipment.checked}
                           />
                         </td>
@@ -148,16 +131,16 @@ const Tabels = () => {
                               : "text-gray-900"
                           )}
                         >
-                          {shipment.OrderNumb}
+                          {shipment.OrderId}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {shipment.OrderDate}
+                        </td>
+                        <td className="whitespace-wrap px-3 py-4 text-sm text-gray-500">
                           {shipment.ShipFrom}
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <td className="whitespace-wrap px-3 py-4 text-sm text-gray-500">
                           {shipment.ShipTo}
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {shipment.RequiredShipDate}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                           {shipment.Status}
