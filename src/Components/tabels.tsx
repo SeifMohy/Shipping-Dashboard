@@ -2,8 +2,6 @@ import { useState } from "react";
 import { classNames } from "../Utils";
 import BottomOver from "./bottomOver";
 
-//TODO: fix as requested
-
 const headers = [
   "Order ID",
   "Order Date",
@@ -67,11 +65,11 @@ const Tabels = () => {
         setOpenBottomOver={setOpenBottomOver}
         orderInfo={orderInfo}
       />
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div>
         <div className="sm:flex sm:items-center"></div>
         <div className="mt-2 flex flex-col">
           <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div className="inline-block min-w-full align-middle md:px-6 lg:px-8">
               <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <table className="min-w-full table-fixed divide-y divide-gray-300">
                   <thead className="bg-gray-100">
@@ -89,7 +87,7 @@ const Tabels = () => {
                         return (
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            className="px-1 py-3 text-left text-sm font-normal text-gray-900"
                           >
                             {header}
                           </th>
@@ -130,10 +128,10 @@ const Tabels = () => {
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                           {shipment.OrderDate}
                         </td>
-                        <td className="whitespace-wrap px-3 py-4 text-sm text-gray-500">
+                        <td className="whitespace-wrap max-w-xs px-3 py-4 text-sm text-gray-500">
                           {shipment.ShipFrom}
                         </td>
-                        <td className="whitespace-wrap px-3 py-4 text-sm text-gray-500">
+                        <td className="whitespace-wrap max-w-xs px-3 py-4 text-sm text-gray-500">
                           {shipment.ShipTo}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
