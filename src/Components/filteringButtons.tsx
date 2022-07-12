@@ -20,7 +20,7 @@ const FilteringButtons = () => {
           <select
             id="tabs"
             name="tabs"
-            className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+            className="block w-full focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
           >
             {tabs.map((tab) => (
               <option key={tab.name}>{tab.name}</option>
@@ -52,7 +52,7 @@ const FilteringButtons = () => {
                   aria-hidden="true"
                   className={classNames(
                     currentTab === tab.name
-                      ? "bg-indigo-500"
+                      ? "bg-blue-500"
                       : "bg-transparent",
                     "absolute inset-x-0 bottom-0 h-0.5"
                   )}

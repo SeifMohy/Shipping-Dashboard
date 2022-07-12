@@ -25,7 +25,7 @@ const shipments = [
     checked: true,
   },
   {
-    OrderId: "1",
+    OrderId: "2",
     OrderDate: "11/12/2022",
     ShipFrom:
       "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
@@ -37,7 +37,7 @@ const shipments = [
     checked: false,
   },
   {
-    OrderId: "1",
+    OrderId: "3",
     OrderDate: "11/12/2022",
     ShipFrom:
       "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
@@ -80,14 +80,14 @@ const Tabels = () => {
                       >
                         <input
                           type="checkbox"
-                          className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
+                          className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
                         />
                       </th>
                       {headers.map((header: string) => {
                         return (
                           <th
                             scope="col"
-                            className="px-1 py-3 text-left text-sm font-normal text-gray-900"
+                            className="px-1 py-3 text-left text-sm font-normal text-blue-500"
                           >
                             {header}
                           </th>
@@ -106,11 +106,11 @@ const Tabels = () => {
                       >
                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                           {shipment.checked && (
-                            <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600" />
+                            <div className="absolute inset-y-0 left-0 w-0.5 bg-blue-600" />
                           )}
                           <input
                             type="checkbox"
-                            className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
+                            className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
                             value={shipment.OrderId}
                             checked={shipment.checked}
                           />
@@ -119,7 +119,7 @@ const Tabels = () => {
                           className={classNames(
                             "whitespace-nowrap py-4 pr-3 text-sm font-medium",
                             shipment.checked
-                              ? "text-indigo-600"
+                              ? "text-blue-600"
                               : "text-gray-900"
                           )}
                         >
