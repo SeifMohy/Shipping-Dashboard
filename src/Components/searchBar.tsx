@@ -8,7 +8,7 @@ const SearchBar = () => {
   return (
     <div>
       <SideOver openSideOver={openSideOver} setOpenSideOver={setOpenSideOver} />
-      <div className="px-2 flex m-2">
+      <div className="flex p-4 bg-white">
         <div className="w-full sm:max-w-xs">
           <label htmlFor="search" className="sr-only">
             Search

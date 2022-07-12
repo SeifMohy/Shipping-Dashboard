@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { classNames } from "../Utils";
 import BottomOver from "./bottomOver";
 
 //TODO: fix as requested
@@ -51,10 +52,6 @@ const shipments = [
   },
 ];
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const Tabels = () => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
   const [orderInfo, setOrderInfo] = useState([]);
@@ -86,9 +83,6 @@ const Tabels = () => {
                         <input
                           type="checkbox"
                           className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
-                          // ref={checkbox}
-                          // checked={checked}
-                          // onChange={toggleAll}
                         />
                       </th>
                       {headers.map((header: string) => {

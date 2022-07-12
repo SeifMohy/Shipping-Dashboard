@@ -6,7 +6,7 @@ import Tabels from "./Components/tabels";
 
 function App() {
   return (
-    <div className="bg-gray-50 m-2 h-screen">
+    <div className="bg-gray-100 p-2 h-screen">
       <Navbar />
       <FilteringButtons />
       <SearchBar />
