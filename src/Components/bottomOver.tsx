@@ -52,27 +52,45 @@ const BottomOver = ({
                       </Dialog.Title>
                       <div className="mt-2 grid grid-cols-4 gap-2">
                         <div>
-                          <p>Order #</p>
+                          <p className="text-lg leading-6 font-medium text-gray-900">
+                            Order #
+                          </p>
                           <p className="text-sm text-gray-500">
                             {orderInfo.OrderId}
                           </p>
                         </div>
                         <div>
-                          <p>Ship From</p>
+                          <p className="text-lg leading-6 font-medium text-gray-900">
+                            Ship From
+                          </p>
                           <p className="text-sm text-gray-500">
-                            {orderInfo.ShipFrom} / {orderInfo.ShipTo}
+                            {orderInfo.ShipFrom}
                           </p>
                         </div>
                         <div>
-                          <p>Ship To</p>
+                          <p className="text-lg leading-6 font-medium text-gray-900">
+                            Ship To
+                          </p>
                           <p className="text-sm text-gray-500">
-                            {orderInfo.ShipFrom} / {orderInfo.ShipTo}
+                            {orderInfo.ShipTo}
                           </p>
                         </div>
                         <div>
-                          <p>Order Lines</p>
+                          <p className="text-lg leading-6 font-medium text-gray-900">
+                            Order Lines
+                          </p>
                           <p className="text-sm text-gray-500">
-                            {orderInfo.ShipFrom} / {orderInfo.ShipTo}
+                            {orderInfo.OrderLines.map((order) => {
+                              return (
+                                <ul>
+                                  <p>
+                                    Item: {order.Description} / Qty:{" "}
+                                    {order.Quantity}
+                                  </p>
+                                  <hr />
+                                </ul>
+                              );
+                            })}
                           </p>
                         </div>
                       </div>

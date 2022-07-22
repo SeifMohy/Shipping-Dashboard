@@ -6,5 +6,11 @@ export type Order = {
   Status: string;
   ShipperReference: string;
   ShipmentNumb: string;
-  checked: boolean;
+  Checked: boolean;
+  OrderLines: OrderLines[];
+};
+
+export type OrderLines = {
+  Description: string;
+  Quantity: number;
 };

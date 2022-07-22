@@ -9,7 +9,12 @@ export const shipments = [
     Status: "Entered",
     ShipperReference: "",
     ShipmentNumb: "",
-    checked: true,
+    Checked: true,
+    OrderLines: [
+      { Description: "An Item that is important", Quantity: 1 },
+      { Description: "An Item that is important", Quantity: 2 },
+      { Description: "An Item that is important", Quantity: 3 },
+    ],
   },
   {
     OrderId: "2",
@@ -21,7 +26,12 @@ export const shipments = [
     Status: "Entered",
     ShipperReference: "",
     ShipmentNumb: "",
-    checked: false,
+    Checked: false,
+    OrderLines: [
+      { Description: "An Item that is important", Quantity: 1 },
+      { Description: "An Item that is important", Quantity: 2 },
+      { Description: "An Item that is important", Quantity: 3 },
+    ],
   },
   {
     OrderId: "3",
@@ -33,7 +43,12 @@ export const shipments = [
     Status: "Entered",
     ShipperReference: "",
     ShipmentNumb: "",
-    checked: false,
+    Checked: false,
+    OrderLines: [
+      { Description: "An Item that is important", Quantity: 1 },
+      { Description: "An Item that is important", Quantity: 2 },
+      { Description: "An Item that is important", Quantity: 3 },
+    ],
   },
 ];
 
@@ -59,5 +74,6 @@ export const noInfoOrder = {
   Status: "",
   ShipperReference: "",
   ShipmentNumb: "",
-  checked: false,
+  Checked: false,
+  OrderLines: [{ Description: "No Item", Quantity: 0 }],
 };

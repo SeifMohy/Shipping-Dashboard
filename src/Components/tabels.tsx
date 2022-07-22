@@ -51,27 +51,27 @@ const Tabels = () => {
                     {shipments.map((shipment: Order) => (
                       <tr
                         key={shipment.OrderId}
-                        className={shipment.checked ? "bg-gray-50" : undefined}
-                        onClick={() => {
-                          bottomOver(shipment);
-                        }}
+                        className={shipment.Checked ? "bg-gray-50" : undefined}
                       >
                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
-                          {shipment.checked && (
+                          {shipment.Checked && (
                             <div className="absolute inset-y-0 left-0 w-0.5 bg-blue-600" />
                           )}
                           <input
                             type="checkbox"
                             className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
                             value={shipment.OrderId}
-                            checked={shipment.checked}
+                            checked={shipment.Checked}
                           />
                         </td>
                         <td
                           className={classNames(
                             "whitespace-nowrap py-4 pr-3 text-sm font-medium",
-                            shipment.checked ? "text-blue-600" : "text-gray-900"
+                            shipment.Checked ? "text-blue-600" : "text-gray-900"
                           )}
+                          onClick={() => {
+                            bottomOver(shipment);
+                          }}
                         >
                           {shipment.OrderId}
                         </td>
