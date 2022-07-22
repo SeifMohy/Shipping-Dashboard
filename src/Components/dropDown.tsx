@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { classNames } from "../Utils";
-
-const options = ["Entered", "Shipped", "Delivered", "Invoiced"];
+import { classNames, orderStatusOptions } from "../Utils";
 
 const DropDown = () => {
   const [option, setOption] = useState("Status");
@@ -28,7 +26,7 @@ const DropDown = () => {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {options.map((option) => {
+            {orderStatusOptions.map((option) => {
               return (
                 <Menu.Item key={option}>
                   {({ active }) => (

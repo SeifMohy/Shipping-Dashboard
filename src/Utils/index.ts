@@ -66,6 +66,8 @@ export const headers = [
   "Shipment ID",
 ];
 
+export const orderStatusOptions = ["Entered", "Shipped", "Delivered", "Invoiced"];
+
 export const noInfoOrder = {
   OrderId: "No Info",
   OrderDate: "",
