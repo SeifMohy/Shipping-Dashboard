@@ -1,60 +1,12 @@
 import { useState } from "react";
-import { classNames } from "../Utils";
+import { Order } from "../Types";
+import { classNames, headers, noInfoOrder, shipments } from "../Utils";
 import BottomOver from "./bottomOver";
-
-const headers = [
-  "Order ID",
-  "Order Date",
-  "Ship From",
-  "Ship To",
-  "Order Status",
-  "Shipper Reference",
-  "Shipment ID",
-];
-const shipments = [
-  {
-    OrderId: "1",
-    OrderDate: "11/12/2022",
-    ShipFrom:
-      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
-    ShipTo:
-      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
-    Status: "Entered",
-    ShipperReference: "",
-    ShipmentNumb: "",
-    checked: true,
-  },
-  {
-    OrderId: "2",
-    OrderDate: "11/12/2022",
-    ShipFrom:
-      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
-    ShipTo:
-      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
-    Status: "Entered",
-    ShipperReference: "",
-    ShipmentNumb: "",
-    checked: false,
-  },
-  {
-    OrderId: "3",
-    OrderDate: "11/12/2022",
-    ShipFrom:
-      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
-    ShipTo:
-      "Company, Contact, Address Line 1, Address Line 2, City, State, Zip, Country",
-    Status: "Entered",
-    ShipperReference: "",
-    ShipmentNumb: "",
-    checked: false,
-  },
-];
 
 const Tabels = () => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
-  const [orderInfo, setOrderInfo] = useState([]);
-  function bottomOver(info: any) {
-    //TODO: Type
+  const [orderInfo, setOrderInfo] = useState(noInfoOrder);
+  function bottomOver(info: Order) {
     setOpenBottomOver(true);
     setOrderInfo(info);
   }
@@ -96,7 +48,7 @@ const Tabels = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {shipments.map((shipment) => (
+                    {shipments.map((shipment: Order) => (
                       <tr
                         key={shipment.OrderId}
                         className={shipment.checked ? "bg-gray-50" : undefined}
@@ -118,9 +70,7 @@ const Tabels = () => {
                         <td
                           className={classNames(
                             "whitespace-nowrap py-4 pr-3 text-sm font-medium",
-                            shipment.checked
-                              ? "text-blue-600"
-                              : "text-gray-900"
+                            shipment.checked ? "text-blue-600" : "text-gray-900"
                           )}
                         >
                           {shipment.OrderId}

@@ -14,8 +14,8 @@ const FilteringButtons = () => {
   const [currentTab, setCurrentTab] = useState("ALL");
 
   return (
-    <div className="bg-white p-2 border-b-2 mt-3 flex justify-between">
-      <div className="w-1/2">
+    <div className="bg-white border-b-2 mt-3 flex justify-between">
+      <div className="w-3/5 h-full">
         <div className="sm:hidden">
           <select
             id="tabs"

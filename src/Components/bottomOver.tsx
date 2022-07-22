@@ -1,11 +1,12 @@
 import React from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Order } from "../Types";
 
 type Props = {
   openBottomOver: boolean;
   setOpenBottomOver: React.Dispatch<React.SetStateAction<boolean>>;
-  orderInfo: any;
+  orderInfo: Order;
 };
 const BottomOver = ({
   openBottomOver,
@@ -42,16 +43,38 @@ const BottomOver = ({
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                      {/* Change to buttons */}
                       <Dialog.Title
                         as="h3"
                         className="text-lg leading-6 font-medium text-gray-900"
                       >
-                        Order {orderInfo.OrderNumb}
+                        Order {orderInfo.OrderId}
                       </Dialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          {orderInfo.ShipFrom} / {orderInfo.ShipTo}
-                        </p>
+                      <div className="mt-2 grid grid-cols-4 gap-2">
+                        <div>
+                          <p>Order #</p>
+                          <p className="text-sm text-gray-500">
+                            {orderInfo.OrderId}
+                          </p>
+                        </div>
+                        <div>
+                          <p>Ship From</p>
+                          <p className="text-sm text-gray-500">
+                            {orderInfo.ShipFrom} / {orderInfo.ShipTo}
+                          </p>
+                        </div>
+                        <div>
+                          <p>Ship To</p>
+                          <p className="text-sm text-gray-500">
+                            {orderInfo.ShipFrom} / {orderInfo.ShipTo}
+                          </p>
+                        </div>
+                        <div>
+                          <p>Order Lines</p>
+                          <p className="text-sm text-gray-500">
+                            {orderInfo.ShipFrom} / {orderInfo.ShipTo}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
