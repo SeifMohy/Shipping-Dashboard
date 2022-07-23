@@ -26,14 +26,14 @@ const sideOver = ({ setOpenSideOver, openSideOver }: Props) => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-xs">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                  <div className="flex h-5/6 flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                     <div className="px-4 sm:px-6"></div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       <div className="absolute inset-0 px-4 sm:px-6">
                         <SideOverFilters />
                       </div>
                     </div>
-                    <div className="z-50 w-full fixed flex justify-center bg-white h-20 bottom-0">
+                    <div className="z-50 w-full fixed flex justify-center py-7 bg-white h-28 bottom-0">
                       <button
                         type="button"
                         onClick={() => setOpenSideOver(false)}
