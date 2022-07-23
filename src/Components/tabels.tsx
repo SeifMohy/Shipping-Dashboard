@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Order } from "../Types";
+import { Order, SearchedShipmentsProps } from "../Types";
 import { classNames, headers, noInfoOrder, shipments } from "../Utils";
 import BottomOver from "./bottomOver";
 
-const Tabels = () => {
+const Tabels = ({ searchedShipments, setSearchedShipments }: SearchedShipmentsProps) => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
   const [orderInfo, setOrderInfo] = useState(noInfoOrder);
   function bottomOver(info: Order) {
@@ -48,7 +48,7 @@ const Tabels = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {shipments.map((shipment: Order) => (
+                    {searchedShipments.map((shipment: Order) => (
                       <tr
                         key={shipment.OrderId}
                         className={shipment.Checked ? "bg-gray-50" : undefined}

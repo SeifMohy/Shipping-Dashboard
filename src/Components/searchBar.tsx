@@ -1,10 +1,24 @@
 import { useState } from "react";
+import { SearchedShipmentsProps } from "../Types";
+import { shipments } from "../Utils";
 import DropDown from "./dropDown";
 import SideOver from "./sideOver";
 
-const SearchBar = () => {
+const SearchBar = ({
+  searchedShipments,
+  setSearchedShipments,
+}: SearchedShipmentsProps) => {
   const [openSideOver, setOpenSideOver] = useState(false);
-
+  const handleFilter = (event: any) => {
+    const searchWord = event.target.value;
+    console.log(searchWord);
+    const shipmentsBySearch = searchedShipments.filter((shipments) => {
+      return shipments.OrderId.toLowerCase().includes(searchWord.toLowerCase());
+    });
+    if (searchWord === "") {
+      setSearchedShipments(shipments);
+    } else setSearchedShipments(shipmentsBySearch);
+  };
   return (
     <div>
       <SideOver openSideOver={openSideOver} setOpenSideOver={setOpenSideOver} />
@@ -15,11 +29,11 @@ const SearchBar = () => {
           </label>
           <div>
             <input
-              id="search"
               name="search"
               className="block w-full bg-white border border-gray-300 rounded-md text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               placeholder="Search"
               type="search"
+              onChange={handleFilter}
             />
           </div>
         </div>
