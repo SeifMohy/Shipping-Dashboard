@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export const shipments = [
   {
     OrderId: "1",
@@ -66,7 +68,12 @@ export const headers = [
   "Shipment ID",
 ];
 
-export const orderStatusOptions = ["Entered", "Shipped", "Delivered", "Invoiced"];
+export const orderStatusOptions = [
+  "Entered",
+  "Shipped",
+  "Delivered",
+  "Invoiced",
+];
 
 export const noInfoOrder = {
   OrderId: "No Info",
@@ -79,3 +86,62 @@ export const noInfoOrder = {
   Checked: false,
   OrderLines: [{ Description: "No Item", Quantity: 0 }],
 };
+
+export const filters = [
+  {
+    name: "Order ID",
+    current: false,
+    children: _(shipments)
+      .groupBy((shipments) => shipments.OrderId)
+      .map((value, key) => ({ key: key, values: value }))
+      .value(),
+  },
+  {
+    name: "Order Date",
+    current: false,
+    children: _(shipments)
+      .groupBy((shipments) => shipments.OrderDate)
+      .map((value, key) => ({ key: key, values: value }))
+      .value(),
+  },
+  {
+    name: "Ship From",
+    current: false,
+    children: _(shipments)
+      .groupBy((shipments) => shipments.ShipFrom)
+      .map((value, key) => ({ key: key, values: value }))
+      .value(),
+  },
+  {
+    name: "Ship To",
+    current: false,
+    children: _(shipments)
+      .groupBy((shipments) => shipments.ShipTo)
+      .map((value, key) => ({ key: key, values: value }))
+      .value(),
+  },
+  {
+    name: "Order Status",
+    current: false,
+    children: _(shipments)
+      .groupBy((shipments) => shipments.Status)
+      .map((value, key) => ({ key: key, values: value }))
+      .value(),
+  },
+  {
+    name: "Shipper Reference",
+    current: false,
+    children: _(shipments)
+      .groupBy((shipments) => shipments.ShipperReference)
+      .map((value, key) => ({ key: key, values: value }))
+      .value(),
+  },
+  {
+    name: "Shipment ID",
+    current: false,
+    children: _(shipments)
+      .groupBy((shipments) => shipments.ShipmentNumb)
+      .map((value, key) => ({ key: key, values: value }))
+      .value(),
+  },
+];

@@ -1,6 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
+import SideOverFilters from "./sideOverFilters";
 
 type Props = {
   openSideOver: boolean;
@@ -24,13 +25,13 @@ const sideOver = ({ setOpenSideOver, openSideOver }: Props) => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                <Dialog.Panel className="pointer-events-auto w-screen max-w-xs">
                   <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                     <div className="px-4 sm:px-6">
-                      <div className="flex items-start justify-between">
+                      {/* <div className="flex items-start justify-between">
                         <Dialog.Title className="text-lg font-medium text-gray-900">
                           {" "}
-                          Panel title{" "}
+                          Filters{" "}
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
@@ -42,17 +43,26 @@ const sideOver = ({ setOpenSideOver, openSideOver }: Props) => {
                             <XIcon className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {/* Replace with your content */}
                       <div className="absolute inset-0 px-4 sm:px-6">
-                        <div
-                          className="h-full border-2 border-dashed border-gray-200"
-                          aria-hidden="true"
-                        />
+                        <SideOverFilters />
                       </div>
-                      {/* /End replace */}
+                    </div>
+                    <div className="z-50 w-full fixed flex justify-center bg-white h-20 bottom-0">
+                      <button
+                        type="button"
+                        className="z-51 m-1 h-10 px-4 py-2 border border-gray-300 text-sm font-medium rounded-sm text-gray-700 bg-white hover:bg-gray-50 focus:bg-gray-100"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="button"
+                        className="z-51 h-10 m-1 px-4 py-2 border bg-blue-500 border-gray-300 text-sm text-white font-medium rounded-sm hover:bg-blue-300 focus:bg-blue-300"
+                      >
+                        Apply
+                      </button>
                     </div>
                   </div>
                 </Dialog.Panel>

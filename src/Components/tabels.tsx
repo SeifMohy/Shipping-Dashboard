@@ -61,7 +61,7 @@ const Tabels = () => {
                             type="checkbox"
                             className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
                             value={shipment.OrderId}
-                            checked={shipment.Checked}
+                            // checked={shipment.Checked}
                           />
                         </td>
                         <td
