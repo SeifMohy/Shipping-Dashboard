@@ -53,6 +53,7 @@ const sideOver = ({ setOpenSideOver, openSideOver }: Props) => {
                     <div className="z-50 w-full fixed flex justify-center bg-white h-20 bottom-0">
                       <button
                         type="button"
+                        onClick={() => setOpenSideOver(false)}
                         className="z-51 m-1 h-10 px-4 py-2 border border-gray-300 text-sm font-medium rounded-sm text-gray-700 bg-white hover:bg-gray-50 focus:bg-gray-100"
                       >
                         Cancel
