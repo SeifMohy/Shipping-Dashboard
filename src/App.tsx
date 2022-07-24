@@ -6,19 +6,19 @@ import Tabels from "./Components/tabels";
 import { shipments } from "./Utils";
 
 function App() {
-  const [searchedShipments, setSearchedShipments] = useState(shipments);
+  const [displayedShipments, setDisplayedShipments] = useState(shipments);
 
   return (
     <div className="bg-gray-100 p-2 h-screen">
       <Navbar />
       <FilteringButtons />
       <SearchBar
-        searchedShipments={searchedShipments}
-        setSearchedShipments={setSearchedShipments}
+        displayedShipments={displayedShipments}
+        setDisplayedShipments={setDisplayedShipments}
       />
       <Tabels
-        searchedShipments={searchedShipments}
-        setSearchedShipments={setSearchedShipments}
+        displayedShipments={displayedShipments}
+        setDisplayedShipments={setDisplayedShipments}
       />
     </div>
   );

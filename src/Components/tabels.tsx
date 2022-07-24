@@ -3,7 +3,10 @@ import { Order, SearchedShipmentsProps } from "../Types";
 import { classNames, headers, noInfoOrder, shipments } from "../Utils";
 import BottomOver from "./bottomOver";
 
-const Tabels = ({ searchedShipments, setSearchedShipments }: SearchedShipmentsProps) => {
+const Tabels = ({
+  displayedShipments,
+  setDisplayedShipments,
+}: SearchedShipmentsProps) => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
   const [orderInfo, setOrderInfo] = useState(noInfoOrder);
   function bottomOver(info: Order) {
@@ -16,6 +19,8 @@ const Tabels = ({ searchedShipments, setSearchedShipments }: SearchedShipmentsPr
         openBottomOver={openBottomOver}
         setOpenBottomOver={setOpenBottomOver}
         orderInfo={orderInfo}
+        displayedShipments={displayedShipments}
+        setDisplayedShipments={setDisplayedShipments}
       />
       <div>
         <div className="sm:flex sm:items-center"></div>
@@ -38,6 +43,7 @@ const Tabels = ({ searchedShipments, setSearchedShipments }: SearchedShipmentsPr
                       {headers.map((header: string) => {
                         return (
                           <th
+                            key={header}
                             scope="col"
                             className="px-1 py-3 text-left text-sm font-normal text-blue-500"
                           >
@@ -48,7 +54,7 @@ const Tabels = ({ searchedShipments, setSearchedShipments }: SearchedShipmentsPr
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {searchedShipments.map((shipment: Order) => (
+                    {displayedShipments.map((shipment: Order) => (
                       <tr
                         key={shipment.OrderId}
                         className={shipment.Checked ? "bg-gray-50" : undefined}

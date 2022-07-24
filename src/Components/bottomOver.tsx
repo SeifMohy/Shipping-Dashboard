@@ -1,19 +1,15 @@
-import React from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Order } from "../Types";
+import { OrderInfoProps } from "../Types";
 import BottomOverButtons from "./bottomOverButtons";
 
-type Props = {
-  openBottomOver: boolean;
-  setOpenBottomOver: React.Dispatch<React.SetStateAction<boolean>>;
-  orderInfo: Order;
-};
 const BottomOver = ({
   openBottomOver,
   setOpenBottomOver,
   orderInfo,
-}: Props) => {
+  displayedShipments,
+  setDisplayedShipments,
+}: OrderInfoProps) => {
   return (
     <Transition.Root show={openBottomOver} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpenBottomOver}>
@@ -44,9 +40,13 @@ const BottomOver = ({
                 <div className="bg-white px-3 pt-3 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      {/* Change to buttons */}
                       <div className="flex justify-end mb-3">
-                        <BottomOverButtons />
+                        <BottomOverButtons
+                          orderInfo={orderInfo}
+                          displayedShipments={displayedShipments}
+                          setDisplayedShipments={setDisplayedShipments}
+                          setOpenBottomOver={setOpenBottomOver}
+                        />
                       </div>
                       <div className="mt-2 grid grid-cols-4 gap-2">
                         <div>
@@ -77,10 +77,10 @@ const BottomOver = ({
                           <p className="text-lg leading-6 font-medium text-gray-900">
                             Order Lines
                           </p>
-                          <p className="text-sm text-gray-500">
-                            {orderInfo.OrderLines.map((order) => {
+                          <div className="text-sm text-gray-500">
+                            {orderInfo.OrderLines.map((order, index) => {
                               return (
-                                <ul>
+                                <ul key={index}>
                                   <p>
                                     Item: {order.Description} / Qty:{" "}
                                     {order.Quantity}
@@ -89,7 +89,7 @@ const BottomOver = ({
                                 </ul>
                               );
                             })}
-                          </p>
+                          </div>
                         </div>
                       </div>
                     </div>

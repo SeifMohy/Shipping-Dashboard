@@ -5,19 +5,19 @@ import DropDown from "./dropDown";
 import SideOver from "./sideOver";
 
 const SearchBar = ({
-  searchedShipments,
-  setSearchedShipments,
+  displayedShipments,
+  setDisplayedShipments,
 }: SearchedShipmentsProps) => {
   const [openSideOver, setOpenSideOver] = useState(false);
   const handleFilter = (event: any) => {
     const searchWord = event.target.value;
     console.log(searchWord);
-    const shipmentsBySearch = searchedShipments.filter((shipments) => {
+    const shipmentsBySearch = displayedShipments.filter((shipments) => {
       return shipments.OrderId.toLowerCase().includes(searchWord.toLowerCase());
     });
     if (searchWord === "") {
-      setSearchedShipments(shipments);
-    } else setSearchedShipments(shipmentsBySearch);
+      setDisplayedShipments(shipments);
+    } else setDisplayedShipments(shipmentsBySearch);
   };
   return (
     <div>
