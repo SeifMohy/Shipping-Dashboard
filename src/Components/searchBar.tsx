@@ -24,7 +24,6 @@ const SearchBar = ({
       <SideOver
         openSideOver={openSideOver}
         setOpenSideOver={setOpenSideOver}
-        displayedShipments={displayedShipments}
         setDisplayedShipments={setDisplayedShipments}
       />
       <div className="flex p-4 bg-white">

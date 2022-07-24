@@ -27,7 +27,11 @@ const SideOverFilters = ({ setFilteredOrders, filteredOrders }: Props) => {
           );
         }
       );
-      return setFilteredOrders(removeDuplicates);
+      const sortedUpdatedOrders = removeDuplicates.sort((a: any, b: any) => {
+        //TODO: Type number
+        return a.OrderId - b.OrderId;
+      });
+      return setFilteredOrders(sortedUpdatedOrders);
     }
   }
   return (

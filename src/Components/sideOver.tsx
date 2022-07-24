@@ -1,13 +1,11 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XIcon } from "@heroicons/react/outline";
 import SideOverFilters from "./sideOverFilters";
 import { Order } from "../Types";
 
 type Props = {
   openSideOver: boolean;
   setOpenSideOver: React.Dispatch<React.SetStateAction<boolean>>;
-  displayedShipments: Order[];
   setDisplayedShipments: React.Dispatch<
     React.SetStateAction<
       {
@@ -30,7 +28,6 @@ type Props = {
 const SideOver = ({
   setOpenSideOver,
   openSideOver,
-  displayedShipments,
   setDisplayedShipments,
 }: Props) => {
   const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
