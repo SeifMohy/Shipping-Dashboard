@@ -1,10 +1,35 @@
 import { Disclosure } from "@headlessui/react";
 import { classNames, filters } from "../Utils";
 import _ from "lodash";
+import { Order } from "../Types";
+import { useState } from "react";
 
 console.log(filters);
 
-const sideOverFilters = () => {
+type Props = {
+  filteredOrders: Order[];
+  setFilteredOrders: React.Dispatch<React.SetStateAction<Order[]>>;
+};
+const SideOverFilters = ({ setFilteredOrders, filteredOrders }: Props) => {
+  console.log(filteredOrders);
+  function filterDisplays(items: Order[]) {
+    if (filteredOrders.length === 0) {
+      return setFilteredOrders(items);
+    } else {
+      const addedFilter = [...filteredOrders, ...items];
+      const removeDuplicates: Order[] = addedFilter.filter(
+        (item, index, self) => {
+          return (
+            index ===
+            self.findIndex((t) => {
+              return t.OrderId === item.OrderId;
+            })
+          );
+        }
+      );
+      return setFilteredOrders(removeDuplicates);
+    }
+  }
   return (
     <nav className="flex-1 px-2 space-y-1 bg-white" aria-label="Sidebar">
       {filters.map((item) => (
@@ -36,6 +61,7 @@ const sideOverFilters = () => {
                   <div className="flex items-center">
                     <input
                       type="checkbox"
+                      onClick={() => filterDisplays(options?.values)}
                       className="h-4 w-4 rounded  border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
                     />
                     <ul
@@ -55,4 +81,4 @@ const sideOverFilters = () => {
   );
 };
 
-export default sideOverFilters;
+export default SideOverFilters;

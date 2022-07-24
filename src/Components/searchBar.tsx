@@ -21,7 +21,12 @@ const SearchBar = ({
   };
   return (
     <div>
-      <SideOver openSideOver={openSideOver} setOpenSideOver={setOpenSideOver} />
+      <SideOver
+        openSideOver={openSideOver}
+        setOpenSideOver={setOpenSideOver}
+        displayedShipments={displayedShipments}
+        setDisplayedShipments={setDisplayedShipments}
+      />
       <div className="flex p-4 bg-white">
         <div className="w-full sm:max-w-xs">
           <label htmlFor="search" className="sr-only">
