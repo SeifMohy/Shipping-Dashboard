@@ -8,10 +8,67 @@ const Tabels = ({
   setDisplayedShipments,
 }: SearchedShipmentsProps) => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
+  const [sortClick, setSortClick] = useState(true);
   const [orderInfo, setOrderInfo] = useState(noInfoOrder);
   function bottomOver(info: Order) {
     setOpenBottomOver(true);
     setOrderInfo(info);
+  }
+
+  function sort(header: string) {
+    switch (header) {
+      case "Order ID":
+        if (sortClick) {
+          const sortedShipmentsId = displayedShipments.sort(
+            (a: any, b: any) => {
+              return a.OrderId - b.OrderId;
+            }
+          );
+          setSortClick(!sortClick);
+          return setDisplayedShipments(sortedShipmentsId);
+        }
+        const sortedShipmentsId = displayedShipments.sort((a: any, b: any) => {
+          return b.OrderId - a.OrderId;
+        });
+        setSortClick(!sortClick);
+        return setDisplayedShipments(sortedShipmentsId);
+      case "Order Date":
+        if (sortClick) {
+          const sortedShipmentsDate = displayedShipments.sort(
+            (a: any, b: any) => {
+              return a.OrderDate - b.OrderDate;
+            }
+          );
+          setSortClick(!sortClick);
+          return setDisplayedShipments(sortedShipmentsDate);
+        }
+        const sortedShipmentsDate = displayedShipments.sort(
+          (a: any, b: any) => {
+            return b.OrderDate - a.OrderDate;
+          }
+        );
+        setSortClick(!sortClick);
+        return setDisplayedShipments(sortedShipmentsDate);
+      case "Order Status":
+        if (sortClick) {
+          const sortedShipmentsStatus = displayedShipments.sort(
+            (a: any, b: any) => {
+              return a.OrderStatus - b.OrderStatus;
+            }
+          );
+          setSortClick(!sortClick);
+          return setDisplayedShipments(sortedShipmentsStatus);
+        }
+        const sortedShipmentsStatus = displayedShipments.sort(
+          (a: any, b: any) => {
+            return b.OrderStatus - a.OrderStatus;
+          }
+        );
+        setSortClick(!sortClick);
+        return setDisplayedShipments(sortedShipmentsStatus);
+      default:
+        break;
+    }
   }
   return (
     <div>
@@ -46,6 +103,7 @@ const Tabels = ({
                             key={header}
                             scope="col"
                             className="px-1 py-3 text-left text-sm font-normal text-blue-500"
+                            onClick={() => sort(header)}
                           >
                             {header}
                           </th>
