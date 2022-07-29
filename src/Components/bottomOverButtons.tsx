@@ -1,4 +1,3 @@
-import { update } from "lodash";
 import { BottomOverProps, Order } from "../Types";
 import { orderStatusOptions } from "../Utils";
 
@@ -7,7 +6,13 @@ const bottomOverButtons = ({
   displayedShipments,
   setDisplayedShipments,
   setOpenBottomOver,
+  updatedShipments,
+  setUpdatedShipments,
 }: BottomOverProps) => {
+  function changeShipments(orders: Order[]) {
+    setDisplayedShipments(orders);
+    setUpdatedShipments(orders);
+  }
   function changeStatus(item: Order, status: string) {
     const unchangedOrders = displayedShipments.filter((shipment) => {
       return shipment.OrderId !== item.OrderId;
@@ -25,7 +30,7 @@ const bottomOverButtons = ({
       return a.OrderId - b.OrderId;
     });
     setOpenBottomOver(false);
-    return setDisplayedShipments(sortedUpdatedOrders);
+    return changeShipments(sortedUpdatedOrders);
   }
   return (
     <span className="relative z-0 inline-flex">

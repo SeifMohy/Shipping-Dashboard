@@ -35,6 +35,48 @@ export type SearchedShipmentsProps = {
       }[]
     >
   >;
+  updatedShipments: Order[]
+};
+
+export type TabelsProps = {
+  displayedShipments: Order[];
+  setDisplayedShipments: React.Dispatch<
+    React.SetStateAction<
+      {
+        OrderId: string;
+        OrderDate: string;
+        ShipFrom: string;
+        ShipTo: string;
+        Status: string;
+        ShipperReference: string;
+        ShipmentNumb: string;
+        Checked: boolean;
+        OrderLines: {
+          Description: string;
+          Quantity: number;
+        }[];
+      }[]
+    >
+  >;
+  updatedShipments: Order[];
+  setUpdatedShipments: React.Dispatch<
+    React.SetStateAction<
+      {
+        OrderId: string;
+        OrderDate: string;
+        ShipFrom: string;
+        ShipTo: string;
+        Status: string;
+        ShipperReference: string;
+        ShipmentNumb: string;
+        Checked: boolean;
+        OrderLines: {
+          Description: string;
+          Quantity: number;
+        }[];
+      }[]
+    >
+  >;
 };
 
 export type OrderInfoProps = {
@@ -60,6 +102,25 @@ export type OrderInfoProps = {
       }[]
     >
   >;
+  updatedShipments: Order[];
+  setUpdatedShipments: React.Dispatch<
+    React.SetStateAction<
+      {
+        OrderId: string;
+        OrderDate: string;
+        ShipFrom: string;
+        ShipTo: string;
+        Status: string;
+        ShipperReference: string;
+        ShipmentNumb: string;
+        Checked: boolean;
+        OrderLines: {
+          Description: string;
+          Quantity: number;
+        }[];
+      }[]
+    >
+  >;
 };
 
 export type BottomOverProps = {
@@ -67,6 +128,25 @@ export type BottomOverProps = {
   displayedShipments: Order[];
   setOpenBottomOver: React.Dispatch<React.SetStateAction<boolean>>;
   setDisplayedShipments: React.Dispatch<
+    React.SetStateAction<
+      {
+        OrderId: string;
+        OrderDate: string;
+        ShipFrom: string;
+        ShipTo: string;
+        Status: string;
+        ShipperReference: string;
+        ShipmentNumb: string;
+        Checked: boolean;
+        OrderLines: {
+          Description: string;
+          Quantity: number;
+        }[];
+      }[]
+    >
+  >;
+  updatedShipments: Order[];
+  setUpdatedShipments: React.Dispatch<
     React.SetStateAction<
       {
         OrderId: string;

@@ -2,20 +2,21 @@ import { useState } from "react";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { classNames, orderStatusOptions, shipments } from "../Utils";
+import { classNames, orderStatusOptions } from "../Utils";
 import { SearchedShipmentsProps } from "../Types";
 
 const DropDown = ({
   displayedShipments,
   setDisplayedShipments,
+  updatedShipments,
 }: SearchedShipmentsProps) => {
   const [option, setOption] = useState("Status");
 
   function DropChangeDisplay(option: string) {
     if (option === "Status") {
-      return setDisplayedShipments(shipments);
+      return setDisplayedShipments(updatedShipments);
     }
-    const ordersToDisplay = shipments.filter(
+    const ordersToDisplay = updatedShipments.filter(
       (item) => item.Status === option
     );
     return setDisplayedShipments(ordersToDisplay);

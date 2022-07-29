@@ -1,10 +1,11 @@
 import { DotsVerticalIcon } from "@heroicons/react/solid";
 import React, { useState } from "react";
 import { SearchedShipmentsProps } from "../Types";
-import { classNames, shipments } from "../Utils";
+import { classNames } from "../Utils";
 
 const FilteringButtons = ({
   displayedShipments,
+  updatedShipments,
   setDisplayedShipments,
 }: SearchedShipmentsProps) => {
   const tabs = [
@@ -19,9 +20,9 @@ const FilteringButtons = ({
 
   function TabChangeDisplay(tab: string) {
     if (tab === "All") {
-      return setDisplayedShipments(shipments);
+      return setDisplayedShipments(updatedShipments);
     }
-    const ordersToDisplay = shipments.filter((item) => item.Status === tab);
+    const ordersToDisplay = updatedShipments.filter((item) => item.Status === tab);
     return setDisplayedShipments(ordersToDisplay);
   }
 

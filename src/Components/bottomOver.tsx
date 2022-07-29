@@ -9,6 +9,8 @@ const BottomOver = ({
   orderInfo,
   displayedShipments,
   setDisplayedShipments,
+  updatedShipments,
+  setUpdatedShipments,
 }: OrderInfoProps) => {
   return (
     <Transition.Root show={openBottomOver} as={Fragment}>
@@ -46,6 +48,8 @@ const BottomOver = ({
                           displayedShipments={displayedShipments}
                           setDisplayedShipments={setDisplayedShipments}
                           setOpenBottomOver={setOpenBottomOver}
+                          updatedShipments={updatedShipments}
+                          setUpdatedShipments={setUpdatedShipments}
                         />
                       </div>
                       <div className="mt-2 grid grid-cols-4 gap-2">

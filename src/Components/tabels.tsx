@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Order, SearchedShipmentsProps } from "../Types";
-import { classNames, headers, noInfoOrder, shipments } from "../Utils";
+import { Order, TabelsProps } from "../Types";
+import { classNames, headers, noInfoOrder } from "../Utils";
 import BottomOver from "./bottomOver";
 
 const Tabels = ({
   displayedShipments,
-  setDisplayedShipments,
-}: SearchedShipmentsProps) => {
+  setDisplayedShipments, updatedShipments, setUpdatedShipments
+}: TabelsProps) => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
   const [sortClick, setSortClick] = useState(true);
   const [orderInfo, setOrderInfo] = useState(noInfoOrder);
@@ -78,6 +78,8 @@ const Tabels = ({
         orderInfo={orderInfo}
         displayedShipments={displayedShipments}
         setDisplayedShipments={setDisplayedShipments}
+        updatedShipments={updatedShipments}
+        setUpdatedShipments={setUpdatedShipments}
       />
       <div>
         <div className="sm:flex sm:items-center"></div>

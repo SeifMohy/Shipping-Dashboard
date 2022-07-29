@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { SearchedShipmentsProps } from "../Types";
-import { shipments } from "../Utils";
 import DropDown from "./dropDown";
 import SideOver from "./sideOver";
 
 const SearchBar = ({
   displayedShipments,
   setDisplayedShipments,
+  updatedShipments
 }: SearchedShipmentsProps) => {
   const [openSideOver, setOpenSideOver] = useState(false);
 
@@ -17,7 +17,7 @@ const SearchBar = ({
       return shipments.OrderId.toLowerCase().includes(searchWord.toLowerCase());
     });
     if (searchWord === "") {
-      setDisplayedShipments(shipments);
+      setDisplayedShipments(updatedShipments);
     } else setDisplayedShipments(shipmentsBySearch);
   };
   return (
@@ -45,6 +45,7 @@ const SearchBar = ({
         <DropDown
           displayedShipments={displayedShipments}
           setDisplayedShipments={setDisplayedShipments}
+          updatedShipments={updatedShipments}
         />
         <button
           type="button"

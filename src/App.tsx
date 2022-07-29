@@ -7,6 +7,7 @@ import { shipments } from "./Utils";
 
 function App() {
   const [displayedShipments, setDisplayedShipments] = useState(shipments);
+  const [updatedShipments, setUpdatedShipments] = useState(shipments);
 
   return (
     <div className="bg-gray-100 p-2 h-screen">
@@ -14,14 +15,18 @@ function App() {
       <FilteringButtons
         displayedShipments={displayedShipments}
         setDisplayedShipments={setDisplayedShipments}
+        updatedShipments={updatedShipments}
       />
       <SearchBar
         displayedShipments={displayedShipments}
         setDisplayedShipments={setDisplayedShipments}
+        updatedShipments={updatedShipments}
       />
       <Tabels
         displayedShipments={displayedShipments}
         setDisplayedShipments={setDisplayedShipments}
+        updatedShipments={updatedShipments}
+        setUpdatedShipments={setUpdatedShipments}
       />
     </div>
   );
