@@ -5,7 +5,9 @@ import BottomOver from "./bottomOver";
 
 const Tabels = ({
   displayedShipments,
-  setDisplayedShipments, updatedShipments, setUpdatedShipments
+  setDisplayedShipments,
+  updatedShipments,
+  setUpdatedShipments,
 }: TabelsProps) => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
   const [sortClick, setSortClick] = useState(true);
@@ -14,7 +16,29 @@ const Tabels = ({
     setOpenBottomOver(true);
     setOrderInfo(info);
   }
-
+  function changeShipments(orders: Order[]) {
+    setDisplayedShipments(orders);
+    setUpdatedShipments(orders);
+  }
+  function changeCheck(orderId: string, currentStatus: boolean) {
+    const unchangedOrders = updatedShipments.filter((shipment) => {
+      return shipment.OrderId !== orderId;
+    });
+    console.log("unchanged", unchangedOrders);
+    const orderToChange = updatedShipments.filter((shipment) => {
+      return shipment.OrderId === orderId;
+    });
+    console.log("orderToChange", orderToChange);
+    const changedOrder = { ...orderToChange[0], Checked: !currentStatus };
+    const updatedOrders = [...unchangedOrders, changedOrder];
+    console.log("updated", updatedOrders);
+    const sortedUpdatedOrders = updatedOrders.sort((a: any, b: any) => {
+      //TODO: Type number
+      return a.OrderId - b.OrderId;
+    });
+    setOpenBottomOver(false);
+    return changeShipments(sortedUpdatedOrders);
+  }
   function sort(header: string) {
     switch (header) {
       case "Order ID":
@@ -127,7 +151,10 @@ const Tabels = ({
                             type="checkbox"
                             className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
                             value={shipment.OrderId}
-                            // checked={shipment.Checked}
+                            checked={shipment.Checked}
+                            onClick={() =>
+                              changeCheck(shipment.OrderId, shipment.Checked)
+                            }
                           />
                         </td>
                         <td

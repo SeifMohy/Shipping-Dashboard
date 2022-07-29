@@ -14,11 +14,11 @@ const bottomOverButtons = ({
     setUpdatedShipments(orders);
   }
   function changeStatus(item: Order, status: string) {
-    const unchangedOrders = displayedShipments.filter((shipment) => {
+    const unchangedOrders = updatedShipments.filter((shipment) => {
       return shipment.OrderId !== item.OrderId;
     });
     console.log("unchanged", unchangedOrders);
-    const orderToChange = displayedShipments.filter((shipment) => {
+    const orderToChange = updatedShipments.filter((shipment) => {
       return shipment.OrderId === item.OrderId;
     });
     console.log("orderToChange", orderToChange);
