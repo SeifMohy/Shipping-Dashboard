@@ -11,7 +11,10 @@ function App() {
   return (
     <div className="bg-gray-100 p-2 h-screen">
       <Navbar />
-      <FilteringButtons />
+      <FilteringButtons
+        displayedShipments={displayedShipments}
+        setDisplayedShipments={setDisplayedShipments}
+      />
       <SearchBar
         displayedShipments={displayedShipments}
         setDisplayedShipments={setDisplayedShipments}

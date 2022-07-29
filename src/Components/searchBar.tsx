@@ -9,6 +9,7 @@ const SearchBar = ({
   setDisplayedShipments,
 }: SearchedShipmentsProps) => {
   const [openSideOver, setOpenSideOver] = useState(false);
+
   const handleFilter = (event: any) => {
     const searchWord = event.target.value;
     console.log(searchWord);
@@ -41,7 +42,10 @@ const SearchBar = ({
             />
           </div>
         </div>
-        <DropDown />
+        <DropDown
+          displayedShipments={displayedShipments}
+          setDisplayedShipments={setDisplayedShipments}
+        />
         <button
           type="button"
           onClick={() => {

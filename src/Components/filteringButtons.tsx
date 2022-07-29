@@ -1,17 +1,29 @@
 import { DotsVerticalIcon } from "@heroicons/react/solid";
 import React, { useState } from "react";
-import { classNames } from "../Utils";
+import { SearchedShipmentsProps } from "../Types";
+import { classNames, shipments } from "../Utils";
 
-const FilteringButtons = () => {
+const FilteringButtons = ({
+  displayedShipments,
+  setDisplayedShipments,
+}: SearchedShipmentsProps) => {
   const tabs = [
-    { name: "ALL", href: "#", current: true },
-    { name: "ENTERED", href: "#", current: false },
-    { name: "BOOKED", href: "#", current: false },
-    { name: "SELF FULFILLED", href: "#", current: false },
-    { name: "ARCHIVED", href: "#", current: false },
+    { name: "All", href: "#", current: true },
+    { name: "Entered", href: "#", current: false },
+    { name: "Shipped", href: "#", current: false },
+    { name: "Delivered", href: "#", current: false },
+    { name: "Invoiced", href: "#", current: false },
   ];
 
-  const [currentTab, setCurrentTab] = useState("ALL");
+  const [currentTab, setCurrentTab] = useState("All");
+
+  function TabChangeDisplay(tab: string) {
+    if (tab === "All") {
+      return setDisplayedShipments(shipments);
+    }
+    const ordersToDisplay = shipments.filter((item) => item.Status === tab);
+    return setDisplayedShipments(ordersToDisplay);
+  }
 
   return (
     <div className="bg-white border-b-2 mt-3 flex justify-between">
@@ -37,6 +49,7 @@ const FilteringButtons = () => {
                 key={tab.name}
                 onClick={() => {
                   setCurrentTab(tab.name);
+                  TabChangeDisplay(tab.name);
                 }}
                 className={classNames(
                   currentTab
@@ -51,9 +64,7 @@ const FilteringButtons = () => {
                 <span
                   aria-hidden="true"
                   className={classNames(
-                    currentTab === tab.name
-                      ? "bg-blue-500"
-                      : "bg-transparent",
+                    currentTab === tab.name ? "bg-blue-500" : "bg-transparent",
                     "absolute inset-x-0 bottom-0 h-0.5"
                   )}
                 />

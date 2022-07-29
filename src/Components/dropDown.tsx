@@ -2,10 +2,25 @@ import { useState } from "react";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { classNames, orderStatusOptions } from "../Utils";
+import { classNames, orderStatusOptions, shipments } from "../Utils";
+import { SearchedShipmentsProps } from "../Types";
 
-const DropDown = () => {
+const DropDown = ({
+  displayedShipments,
+  setDisplayedShipments,
+}: SearchedShipmentsProps) => {
   const [option, setOption] = useState("Status");
+
+  function DropChangeDisplay(option: string) {
+    if (option === "Status") {
+      return setDisplayedShipments(shipments);
+    }
+    const ordersToDisplay = shipments.filter(
+      (item) => item.Status === option
+    );
+    return setDisplayedShipments(ordersToDisplay);
+  }
+
   return (
     <Menu as="div" className="mx-2 z-10 relative inline-block text-left">
       <div>
@@ -33,6 +48,7 @@ const DropDown = () => {
                     <button
                       onClick={() => {
                         setOption(option);
+                        DropChangeDisplay(option);
                       }}
                       type="submit"
                       className={classNames(
