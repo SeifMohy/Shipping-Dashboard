@@ -165,3 +165,26 @@ export type BottomOverProps = {
     >
   >;
 };
+
+export type Filter = {
+  children: {
+    key: string;
+    values: {
+      OrderId: string;
+      OrderDate: string;
+      ShipFrom: string;
+      ShipTo: string;
+      Status: string;
+      ShipperReference: string;
+      ShipmentNumb: string;
+      Checked: boolean;
+      OrderLines: {
+        Description: string;
+        Quantity: number;
+      }[];
+    }[];
+    current: boolean;
+  }[];
+  name: string;
+  Id: number;
+};

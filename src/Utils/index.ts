@@ -90,58 +90,58 @@ export const noInfoOrder = {
 export const filters = [
   {
     name: "Order ID",
-    current: false,
+    Id: 1,
     children: _(shipments)
       .groupBy((shipments) => shipments.OrderId)
-      .map((value, key) => ({ key: key, values: value }))
+      .map((value, key) => ({ key: key, values: value, current: false }))
       .value(),
   },
   {
     name: "Order Date",
-    current: false,
+    Id: 2,
     children: _(shipments)
       .groupBy((shipments) => shipments.OrderDate)
-      .map((value, key) => ({ key: key, values: value }))
+      .map((value, key) => ({ key: key, values: value, current: false }))
       .value(),
   },
   {
     name: "Ship From",
-    current: false,
+    Id: 3,
     children: _(shipments)
       .groupBy((shipments) => shipments.ShipFrom)
-      .map((value, key) => ({ key: key, values: value }))
+      .map((value, key) => ({ key: key, values: value, current: false }))
       .value(),
   },
   {
     name: "Ship To",
-    current: false,
+    Id: 4,
     children: _(shipments)
       .groupBy((shipments) => shipments.ShipTo)
-      .map((value, key) => ({ key: key, values: value }))
+      .map((value, key) => ({ key: key, values: value, current: false }))
       .value(),
   },
   {
     name: "Order Status",
-    current: false,
+    Id: 5,
     children: _(shipments)
       .groupBy((shipments) => shipments.Status)
-      .map((value, key) => ({ key: key, values: value }))
+      .map((value, key) => ({ key: key, values: value, current: false }))
       .value(),
   },
   {
     name: "Shipper Reference",
-    current: false,
+    Id: 6,
     children: _(shipments)
       .groupBy((shipments) => shipments.ShipperReference)
-      .map((value, key) => ({ key: key, values: value }))
+      .map((value, key) => ({ key: key, values: value, current: false }))
       .value(),
   },
   {
     name: "Shipment ID",
-    current: false,
+    Id: 7,
     children: _(shipments)
       .groupBy((shipments) => shipments.ShipmentNumb)
-      .map((value, key) => ({ key: key, values: value }))
+      .map((value, key) => ({ key: key, values: value, current: false }))
       .value(),
   },
 ];

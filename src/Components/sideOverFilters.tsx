@@ -1,17 +1,50 @@
 import { Disclosure } from "@headlessui/react";
 import { classNames, filters } from "../Utils";
-import _ from "lodash";
-import { Order } from "../Types";
+import { Order, Filter } from "../Types";
 import { useState } from "react";
-
-console.log(filters);
 
 type Props = {
   filteredOrders: Order[];
   setFilteredOrders: React.Dispatch<React.SetStateAction<Order[]>>;
 };
+
 const SideOverFilters = ({ setFilteredOrders, filteredOrders }: Props) => {
-  console.log(filteredOrders);
+  const [filtersToDisplay, setFiltersToDisplay] = useState(filters);
+  console.log(filtersToDisplay);
+
+  function changeFilterCheck(
+    item: Filter,
+    key: string,
+    currentStatus: boolean
+  ) {
+    console.log(item);
+    const unchangedFilters = filtersToDisplay.filter((filter) => {
+      return filter.Id !== item.Id;
+    });
+    console.log("Unchanged", unchangedFilters);
+    const optionToChange = item.children.filter((option) => option.key === key);
+    const unchangedOptions = item.children.filter(
+      (option) => option.key !== key
+    );
+    const changedOption = { ...optionToChange[0], current: !currentStatus };
+    console.log("ToChange", changedOption, unchangedOptions);
+    unchangedOptions.push(changedOption);
+    const sortedUpdatedOptions = unchangedOptions.sort((a: any, b: any) => {
+      //TODO: Type number
+      return a.key - b.key;
+    });
+    const changedFilter = {
+      ...item,
+      children: sortedUpdatedOptions,
+    };
+    const updatedFilter = [...unchangedFilters, changedFilter];
+    console.log("updated", updatedFilter);
+    const sortedUpdatedFilters = updatedFilter.sort((a: any, b: any) => {
+      //TODO: Type number
+      return a.Id - b.Id;
+    });
+    return setFiltersToDisplay(sortedUpdatedFilters);
+  }
   function filterDisplays(items: Order[]) {
     if (filteredOrders.length === 0) {
       return setFilteredOrders(items);
@@ -36,15 +69,13 @@ const SideOverFilters = ({ setFilteredOrders, filteredOrders }: Props) => {
   }
   return (
     <nav className="flex-1 px-2 space-y-1 bg-white" aria-label="Sidebar">
-      {filters.map((item) => (
+      {filtersToDisplay.map((item) => (
         <Disclosure as="div" key={item.name} className="space-y-1">
           {({ open }) => (
             <>
               <Disclosure.Button
                 className={classNames(
-                  item.current
-                    ? "bg-gray-100 text-gray-900"
-                    : "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                  "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                   "group w-full flex justify-between items-center pr-2 py-2 px-3 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 )}
               >
@@ -62,10 +93,13 @@ const SideOverFilters = ({ setFilteredOrders, filteredOrders }: Props) => {
               </Disclosure.Button>
               <Disclosure.Panel className="space-y-1">
                 {item?.children?.map((options) => (
-                  <div className="flex items-center">
+                  <div key={options.key} className="flex items-center">
                     <input
                       type="checkbox"
-                      onClick={() => filterDisplays(options?.values)}
+                      onClick={() => {
+                        filterDisplays(options?.values);
+                        changeFilterCheck(item, options.key, options.current);
+                      }}
                       className="h-4 w-4 rounded  border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
                     />
                     <ul
