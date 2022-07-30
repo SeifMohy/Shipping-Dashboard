@@ -1,7 +1,8 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import SideOverFilters from "./sideOverFilters";
-import { Order } from "../Types";
+import { Filter, Order } from "../Types";
+import { filters } from "../Utils";
 
 type Props = {
   openSideOver: boolean;
@@ -30,7 +31,28 @@ const SideOver = ({
   openSideOver,
   setDisplayedShipments,
 }: Props) => {
-  const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
+  const [filtersToDisplay, setFiltersToDisplay] = useState<Filter[]>(filters);
+  function displayAccordingToFilter(filtersToDisplay: Filter[]) {
+    let toDisplay: Order[] = [];
+    for (let filter of filtersToDisplay) {
+      for (let option of filter.children) {
+        if (option.current) {
+          toDisplay.push(...option.values);
+        }
+        console.log(toDisplay);
+      }
+    }
+    const removeDuplicates: Order[] = toDisplay.filter((item, index, self) => {
+      return (
+        index ===
+        self.findIndex((t) => {
+          return t.OrderId === item.OrderId;
+        })
+      );
+    });
+    console.log("noDuplicates", removeDuplicates);
+    return setDisplayedShipments(removeDuplicates);
+  }
   return (
     <Transition.Root show={openSideOver} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpenSideOver}>
@@ -53,15 +75,18 @@ const SideOver = ({
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       <div className="absolute inset-0 px-4 sm:px-6">
                         <SideOverFilters
-                          filteredOrders={filteredOrders}
-                          setFilteredOrders={setFilteredOrders}
+                          filtersToDisplay={filtersToDisplay}
+                          setFiltersToDisplay={setFiltersToDisplay}
                         />
                       </div>
                     </div>
                     <div className="z-50 w-full fixed flex justify-center py-7 bg-white h-28 bottom-0">
                       <button
                         type="button"
-                        onClick={() => setOpenSideOver(false)}
+                        onClick={() => {
+                          setOpenSideOver(false);
+                          setFiltersToDisplay(filters);
+                        }}
                         className="z-51 m-1 h-10 px-4 py-2 border border-gray-300 text-sm font-medium rounded-sm text-gray-700 bg-white hover:bg-gray-50 focus:bg-gray-100"
                       >
                         Cancel
@@ -69,7 +94,7 @@ const SideOver = ({
                       <button
                         type="button"
                         onClick={() => {
-                          setDisplayedShipments(filteredOrders);
+                          displayAccordingToFilter(filtersToDisplay);
                           setOpenSideOver(false);
                         }}
                         className="z-51 h-10 m-1 px-4 py-2 border bg-blue-500 border-gray-300 text-sm text-white font-medium rounded-sm hover:bg-blue-300 focus:bg-blue-300"

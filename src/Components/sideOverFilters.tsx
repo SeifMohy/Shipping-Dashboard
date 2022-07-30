@@ -1,17 +1,13 @@
 import { Disclosure } from "@headlessui/react";
-import { classNames, filters } from "../Utils";
-import { Order, Filter } from "../Types";
-import { useState } from "react";
+import { classNames } from "../Utils";
+import { Filter } from "../Types";
 
 type Props = {
-  filteredOrders: Order[];
-  setFilteredOrders: React.Dispatch<React.SetStateAction<Order[]>>;
+  filtersToDisplay: Filter[];
+  setFiltersToDisplay: React.Dispatch<React.SetStateAction<Filter[]>>;
 };
 
-const SideOverFilters = ({ setFilteredOrders, filteredOrders }: Props) => {
-  const [filtersToDisplay, setFiltersToDisplay] = useState(filters);
-  console.log(filtersToDisplay);
-
+const SideOverFilters = ({ filtersToDisplay, setFiltersToDisplay }: Props) => {
   function changeFilterCheck(
     item: Filter,
     key: string,
@@ -45,28 +41,6 @@ const SideOverFilters = ({ setFilteredOrders, filteredOrders }: Props) => {
     });
     return setFiltersToDisplay(sortedUpdatedFilters);
   }
-  function filterDisplays(items: Order[]) {
-    if (filteredOrders.length === 0) {
-      return setFilteredOrders(items);
-    } else {
-      const addedFilter = [...filteredOrders, ...items];
-      const removeDuplicates: Order[] = addedFilter.filter(
-        (item, index, self) => {
-          return (
-            index ===
-            self.findIndex((t) => {
-              return t.OrderId === item.OrderId;
-            })
-          );
-        }
-      );
-      const sortedUpdatedOrders = removeDuplicates.sort((a: any, b: any) => {
-        //TODO: Type number
-        return a.OrderId - b.OrderId;
-      });
-      return setFilteredOrders(sortedUpdatedOrders);
-    }
-  }
   return (
     <nav className="flex-1 px-2 space-y-1 bg-white" aria-label="Sidebar">
       {filtersToDisplay.map((item) => (
@@ -96,8 +70,8 @@ const SideOverFilters = ({ setFilteredOrders, filteredOrders }: Props) => {
                   <div key={options.key} className="flex items-center">
                     <input
                       type="checkbox"
+                      checked={options.current}
                       onClick={() => {
-                        filterDisplays(options?.values);
                         changeFilterCheck(item, options.key, options.current);
                       }}
                       className="h-4 w-4 rounded  border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
