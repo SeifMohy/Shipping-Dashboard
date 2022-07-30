@@ -1,5 +1,5 @@
-import { DotsVerticalIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
+// import { DotsVerticalIcon } from "@heroicons/react/solid";
+import { useState } from "react";
 import { SearchedShipmentsProps } from "../Types";
 import { classNames } from "../Utils";
 
@@ -22,7 +22,9 @@ const FilteringButtons = ({
     if (tab === "All") {
       return setDisplayedShipments(updatedShipments);
     }
-    const ordersToDisplay = updatedShipments.filter((item) => item.Status === tab);
+    const ordersToDisplay = updatedShipments.filter(
+      (item) => item.Status === tab
+    );
     return setDisplayedShipments(ordersToDisplay);
   }
 
@@ -74,9 +76,9 @@ const FilteringButtons = ({
           </nav>
         </div>
       </div>
-      <button className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 hover:text-gray-500">
+      {/* <button className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 hover:text-gray-500">
         <DotsVerticalIcon className="w-5 h-5" aria-hidden="true" />
-      </button>
+      </button> */}
     </div>
   );
 };

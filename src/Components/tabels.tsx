@@ -117,12 +117,7 @@ const Tabels = ({
                       <th
                         scope="col"
                         className="relative w-12 px-6 sm:w-16 sm:px-8"
-                      >
-                        <input
-                          type="checkbox"
-                          className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
-                        />
-                      </th>
+                      ></th>
                       {headers.map((header: string) => {
                         return (
                           <th
@@ -152,7 +147,7 @@ const Tabels = ({
                             className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
                             value={shipment.OrderId}
                             checked={shipment.Checked}
-                            onClick={() =>
+                            onChange={() =>
                               changeCheck(shipment.OrderId, shipment.Checked)
                             }
                           />
