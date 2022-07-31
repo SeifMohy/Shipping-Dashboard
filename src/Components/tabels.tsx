@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Order, TabelsProps } from "../Types";
-import { classNames, headers, noInfoOrder } from "../Utils";
+import { classNames, headers } from "../Utils";
 import BottomOver from "./bottomOver";
 
 const Tabels = ({
@@ -11,7 +11,7 @@ const Tabels = ({
 }: TabelsProps) => {
   const [openBottomOver, setOpenBottomOver] = useState(false);
   const [sortClick, setSortClick] = useState(true);
-  const [orderInfo, setOrderInfo] = useState(noInfoOrder);
+  const [orderInfo, setOrderInfo] = useState<Order>();
   function bottomOver(info: Order) {
     setOpenBottomOver(true);
     setOrderInfo(info);
@@ -20,21 +20,20 @@ const Tabels = ({
     setDisplayedShipments(orders);
     setUpdatedShipments(orders);
   }
-  function changeCheck(orderId: string, currentStatus: boolean) {
+  function changeCheck(orderId: number, currentStatus: boolean) {
     const unchangedOrders = updatedShipments.filter((shipment) => {
-      return shipment.OrderId !== orderId;
+      return shipment.id !== orderId;
     });
     console.log("unchanged", unchangedOrders);
     const orderToChange = updatedShipments.filter((shipment) => {
-      return shipment.OrderId === orderId;
+      return shipment.id === orderId;
     });
     console.log("orderToChange", orderToChange);
-    const changedOrder = { ...orderToChange[0], Checked: !currentStatus };
+    const changedOrder = { ...orderToChange[0], checked: !currentStatus };
     const updatedOrders = [...unchangedOrders, changedOrder];
     console.log("updated", updatedOrders);
     const sortedUpdatedOrders = updatedOrders.sort((a: any, b: any) => {
-      //TODO: Type number
-      return a.OrderId - b.OrderId;
+      return a.id - b.id;
     });
     setOpenBottomOver(false);
     return changeShipments(sortedUpdatedOrders);
@@ -45,14 +44,14 @@ const Tabels = ({
         if (sortClick) {
           const sortedShipmentsId = displayedShipments.sort(
             (a: any, b: any) => {
-              return a.OrderId - b.OrderId;
+              return a.id - b.id;
             }
           );
           setSortClick(!sortClick);
           return setDisplayedShipments(sortedShipmentsId);
         }
         const sortedShipmentsId = displayedShipments.sort((a: any, b: any) => {
-          return b.OrderId - a.OrderId;
+          return b.id - a.id;
         });
         setSortClick(!sortClick);
         return setDisplayedShipments(sortedShipmentsId);
@@ -60,7 +59,7 @@ const Tabels = ({
         if (sortClick) {
           const sortedShipmentsDate = displayedShipments.sort(
             (a: any, b: any) => {
-              return a.OrderDate - b.OrderDate;
+              return a.orderDate - b.orderDate;
             }
           );
           setSortClick(!sortClick);
@@ -68,7 +67,7 @@ const Tabels = ({
         }
         const sortedShipmentsDate = displayedShipments.sort(
           (a: any, b: any) => {
-            return b.OrderDate - a.OrderDate;
+            return b.orderDate - a.orderDate;
           }
         );
         setSortClick(!sortClick);
@@ -77,7 +76,7 @@ const Tabels = ({
         if (sortClick) {
           const sortedShipmentsStatus = displayedShipments.sort(
             (a: any, b: any) => {
-              return a.OrderStatus - b.OrderStatus;
+              return a.status - b.status;
             }
           );
           setSortClick(!sortClick);
@@ -85,7 +84,7 @@ const Tabels = ({
         }
         const sortedShipmentsStatus = displayedShipments.sort(
           (a: any, b: any) => {
-            return b.OrderStatus - a.OrderStatus;
+            return b.status - a.status;
           }
         );
         setSortClick(!sortClick);
@@ -135,51 +134,51 @@ const Tabels = ({
                   <tbody className="divide-y divide-gray-200 bg-white">
                     {displayedShipments.map((shipment: Order) => (
                       <tr
-                        key={shipment.OrderId}
-                        className={shipment.Checked ? "bg-gray-50" : undefined}
+                        key={shipment.id}
+                        className={shipment.checked ? "bg-gray-50" : undefined}
                       >
                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
-                          {shipment.Checked && (
+                          {shipment.checked && (
                             <div className="absolute inset-y-0 left-0 w-0.5 bg-blue-600" />
                           )}
                           <input
                             type="checkbox"
                             className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"
-                            value={shipment.OrderId}
-                            checked={shipment.Checked}
+                            value={shipment.id}
+                            checked={shipment.checked}
                             onChange={() =>
-                              changeCheck(shipment.OrderId, shipment.Checked)
+                              changeCheck(shipment.id, shipment.checked)
                             }
                           />
                         </td>
                         <td
                           className={classNames(
                             "whitespace-nowrap py-4 pr-3 text-sm font-medium",
-                            shipment.Checked ? "text-blue-600" : "text-gray-900"
+                            shipment.checked ? "text-blue-600" : "text-gray-900"
                           )}
                           onClick={() => {
                             bottomOver(shipment);
                           }}
                         >
-                          {shipment.OrderId}
+                          {shipment.id}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {shipment.OrderDate}
+                          {shipment.orderDate}
                         </td>
                         <td className="whitespace-wrap max-w-xs px-3 py-4 text-sm text-gray-500">
-                          {shipment.ShipFrom}
+                          {`${shipment.shipFrom.addressLine1}, ${shipment.shipFrom.company}, ${shipment.shipFrom.country}`}
                         </td>
                         <td className="whitespace-wrap max-w-xs px-3 py-4 text-sm text-gray-500">
-                          {shipment.ShipTo}
+                          {`${shipment.shipTo.addressLine1}, ${shipment.shipTo.company}, ${shipment.shipTo.country}`}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {shipment.Status}
+                          {shipment.status}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {shipment.ShipperReference}
+                          {shipment.shipperReference}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {shipment.ShipmentNumb}
+                          {shipment.shipmentNumb}
                         </td>
                       </tr>
                     ))}

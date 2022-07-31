@@ -2,35 +2,80 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import SideOverFilters from "./sideOverFilters";
 import { Filter, Order } from "../Types";
-import { filters } from "../Utils";
+import _ from "lodash";
 
 type Props = {
   openSideOver: boolean;
   setOpenSideOver: React.Dispatch<React.SetStateAction<boolean>>;
-  setDisplayedShipments: React.Dispatch<
-    React.SetStateAction<
-      {
-        OrderId: string;
-        OrderDate: string;
-        ShipFrom: string;
-        ShipTo: string;
-        Status: string;
-        ShipperReference: string;
-        ShipmentNumb: string;
-        Checked: boolean;
-        OrderLines: {
-          Description: string;
-          Quantity: number;
-        }[];
-      }[]
-    >
-  >;
+  setDisplayedShipments: React.Dispatch<React.SetStateAction<Order[]>>;
+  updatedShipments: Order[];
 };
+
 const SideOver = ({
   setOpenSideOver,
   openSideOver,
   setDisplayedShipments,
+  updatedShipments,
 }: Props) => {
+  const filters = [
+    {
+      name: "Order ID",
+      Id: 1,
+      children: _(updatedShipments)
+        .groupBy((shipments) => shipments.id)
+        .map((value, key) => ({ key: key, values: value, current: false }))
+        .value(),
+    },
+    {
+      name: "Order Date",
+      Id: 2,
+      children: _(updatedShipments)
+        .groupBy((shipments) => shipments.orderDate)
+        .map((value, key) => ({ key: key, values: value, current: false }))
+        .value(),
+    },
+    {
+      name: "Ship From",
+      Id: 3,
+      children: _(updatedShipments)
+        .groupBy((shipments) => shipments.shipFrom.company)
+        .map((value, key) => ({ key: key, values: value, current: false }))
+        .value(),
+    },
+    {
+      name: "Ship To",
+      Id: 4,
+      children: _(updatedShipments)
+        .groupBy((shipments) => shipments.shipTo.company)
+        .map((value, key) => ({ key: key, values: value, current: false }))
+        .value(),
+    },
+    {
+      name: "Order Status",
+      Id: 5,
+      children: _(updatedShipments)
+        .groupBy((shipments) => shipments.status)
+        .map((value, key) => ({ key: key, values: value, current: false }))
+        .value(),
+    },
+    {
+      name: "Shipper Reference",
+      Id: 6,
+      children: _(updatedShipments)
+        .groupBy((shipments) => shipments.shipperReference)
+        .map((value, key) => ({ key: key, values: value, current: false }))
+        .value(),
+    },
+    {
+      name: "Shipment ID",
+      Id: 7,
+      children: _(updatedShipments)
+        .groupBy((shipments) => shipments.shipmentNumb)
+        .map((value, key) => ({ key: key, values: value, current: false }))
+        .value(),
+    },
+  ];
+
   const [filtersToDisplay, setFiltersToDisplay] = useState<Filter[]>(filters);
   function displayAccordingToFilter(filtersToDisplay: Filter[]) {
     let toDisplay: Order[] = [];
@@ -46,7 +91,7 @@ const SideOver = ({
       return (
         index ===
         self.findIndex((t) => {
-          return t.OrderId === item.OrderId;
+          return t.id === item.id;
         })
       );
     });

@@ -14,7 +14,7 @@ const SearchBar = ({
     const searchWord = event.target.value;
     console.log(searchWord);
     const shipmentsBySearch = displayedShipments.filter((shipments) => {
-      return shipments.OrderId.toLowerCase().includes(searchWord.toLowerCase());
+      return shipments.id.toString().includes(searchWord.toLowerCase());
     });
     if (searchWord === "") {
       setDisplayedShipments(updatedShipments);
@@ -26,6 +26,7 @@ const SearchBar = ({
         openSideOver={openSideOver}
         setOpenSideOver={setOpenSideOver}
         setDisplayedShipments={setDisplayedShipments}
+        updatedShipments={updatedShipments}
       />
       <div className="flex p-4 bg-white">
         <div className="w-full sm:max-w-xs">

@@ -41,7 +41,7 @@ const BottomOver = ({
               <Dialog.Panel className="relative h-64 bg-white text-left overflow-hidden shadow-xl transform transition-all sm:w-full">
                 <div className="bg-white px-3 pt-3 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
-                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <div className="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <div className="flex justify-end mb-3">
                         <BottomOverButtons
                           orderInfo={orderInfo}
@@ -58,7 +58,7 @@ const BottomOver = ({
                             Order #
                           </p>
                           <p className="text-sm text-gray-500">
-                            {orderInfo.OrderId}
+                            {orderInfo?.id}
                           </p>
                         </div>
                         <div>
@@ -66,7 +66,7 @@ const BottomOver = ({
                             Ship From
                           </p>
                           <p className="text-sm text-gray-500">
-                            {orderInfo.ShipFrom}
+                            {`${orderInfo?.shipFrom.addressLine1}, ${orderInfo?.shipFrom.company}, ${orderInfo?.shipFrom.country}`}
                           </p>
                         </div>
                         <div>
@@ -74,7 +74,7 @@ const BottomOver = ({
                             Ship To
                           </p>
                           <p className="text-sm text-gray-500">
-                            {orderInfo.ShipTo}
+                          {`${orderInfo?.shipTo.addressLine1}, ${orderInfo?.shipTo.company}, ${orderInfo?.shipTo.country}`}
                           </p>
                         </div>
                         <div>
@@ -82,12 +82,12 @@ const BottomOver = ({
                             Order Lines
                           </p>
                           <div className="text-sm text-gray-500">
-                            {orderInfo.OrderLines.map((order, index) => {
+                            {orderInfo?.orderLines?.map((order, index) => {
                               return (
                                 <ul key={index}>
                                   <p>
-                                    Item: {order.Description} / Qty:{" "}
-                                    {order.Quantity}
+                                    Item: {order.description} / Qty:{" "}
+                                    {order.quantity}
                                   </p>
                                   <hr />
                                 </ul>

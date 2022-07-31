@@ -13,21 +13,21 @@ const bottomOverButtons = ({
     setDisplayedShipments(orders);
     setUpdatedShipments(orders);
   }
-  function changeStatus(item: Order, status: string) {
+  function changeStatus(item: Order | undefined, status: string) {
     const unchangedOrders = updatedShipments.filter((shipment) => {
-      return shipment.OrderId !== item.OrderId;
+      return shipment.id !== item?.id;
     });
     console.log("unchanged", unchangedOrders);
     const orderToChange = updatedShipments.filter((shipment) => {
-      return shipment.OrderId === item.OrderId;
+      return shipment.id === item?.id;
     });
     console.log("orderToChange", orderToChange);
-    const changedOrder = { ...orderToChange[0], Status: status };
+    const changedOrder = { ...orderToChange[0], status: status };
     const updatedOrders = [...unchangedOrders, changedOrder];
     console.log("updated", updatedOrders);
     const sortedUpdatedOrders = updatedOrders.sort((a: any, b: any) => {
       //TODO: Type number
-      return a.OrderId - b.OrderId;
+      return a.id - b.id;
     });
     setOpenBottomOver(false);
     return changeShipments(sortedUpdatedOrders);

@@ -1,186 +1,77 @@
 export type Order = {
-  OrderId: string;
-  OrderDate: string;
-  ShipFrom: string;
-  ShipTo: string;
-  Status: string;
-  ShipperReference: string;
-  ShipmentNumb: string;
-  Checked: boolean;
-  OrderLines: OrderLines[];
+  id: number;
+  orderDate: string;
+  shipFrom: Address;
+  shipTo: Address;
+  status: string;
+  shipperReference: number;
+  shipmentNumb: number;
+  checked: boolean;
+  orderLines: OrderLines[];
 };
-
 export type OrderLines = {
-  Description: string;
-  Quantity: number;
+  description: string;
+  quantity: number;
+};
+export type Address = {
+  addressId: number;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  company: string;
+  contact: string;
+  country: string;
+  state: string;
+  zip: string;
 };
 
 export type SearchedShipmentsProps = {
   displayedShipments: Order[];
-  setDisplayedShipments: React.Dispatch<
-    React.SetStateAction<
-      {
-        OrderId: string;
-        OrderDate: string;
-        ShipFrom: string;
-        ShipTo: string;
-        Status: string;
-        ShipperReference: string;
-        ShipmentNumb: string;
-        Checked: boolean;
-        OrderLines: {
-          Description: string;
-          Quantity: number;
-        }[];
-      }[]
-    >
-  >;
-  updatedShipments: Order[]
+  setDisplayedShipments: React.Dispatch<React.SetStateAction<Order[]>>;
+  updatedShipments: Order[];
 };
 
 export type TabelsProps = {
   displayedShipments: Order[];
-  setDisplayedShipments: React.Dispatch<
-    React.SetStateAction<
-      {
-        OrderId: string;
-        OrderDate: string;
-        ShipFrom: string;
-        ShipTo: string;
-        Status: string;
-        ShipperReference: string;
-        ShipmentNumb: string;
-        Checked: boolean;
-        OrderLines: {
-          Description: string;
-          Quantity: number;
-        }[];
-      }[]
-    >
-  >;
+  setDisplayedShipments: React.Dispatch<React.SetStateAction<Order[]>>;
   updatedShipments: Order[];
-  setUpdatedShipments: React.Dispatch<
-    React.SetStateAction<
-      {
-        OrderId: string;
-        OrderDate: string;
-        ShipFrom: string;
-        ShipTo: string;
-        Status: string;
-        ShipperReference: string;
-        ShipmentNumb: string;
-        Checked: boolean;
-        OrderLines: {
-          Description: string;
-          Quantity: number;
-        }[];
-      }[]
-    >
-  >;
+  setUpdatedShipments: React.Dispatch<React.SetStateAction<Order[]>>;
 };
 
 export type OrderInfoProps = {
   openBottomOver: boolean;
   setOpenBottomOver: React.Dispatch<React.SetStateAction<boolean>>;
-  orderInfo: Order;
+  orderInfo: Order | undefined;
   displayedShipments: Order[];
-  setDisplayedShipments: React.Dispatch<
-    React.SetStateAction<
-      {
-        OrderId: string;
-        OrderDate: string;
-        ShipFrom: string;
-        ShipTo: string;
-        Status: string;
-        ShipperReference: string;
-        ShipmentNumb: string;
-        Checked: boolean;
-        OrderLines: {
-          Description: string;
-          Quantity: number;
-        }[];
-      }[]
-    >
-  >;
+  setDisplayedShipments: React.Dispatch<React.SetStateAction<Order[]>>;
   updatedShipments: Order[];
-  setUpdatedShipments: React.Dispatch<
-    React.SetStateAction<
-      {
-        OrderId: string;
-        OrderDate: string;
-        ShipFrom: string;
-        ShipTo: string;
-        Status: string;
-        ShipperReference: string;
-        ShipmentNumb: string;
-        Checked: boolean;
-        OrderLines: {
-          Description: string;
-          Quantity: number;
-        }[];
-      }[]
-    >
-  >;
+  setUpdatedShipments: React.Dispatch<React.SetStateAction<Order[]>>;
 };
 
 export type BottomOverProps = {
-  orderInfo: Order;
+  orderInfo: Order | undefined;
   displayedShipments: Order[];
   setOpenBottomOver: React.Dispatch<React.SetStateAction<boolean>>;
-  setDisplayedShipments: React.Dispatch<
-    React.SetStateAction<
-      {
-        OrderId: string;
-        OrderDate: string;
-        ShipFrom: string;
-        ShipTo: string;
-        Status: string;
-        ShipperReference: string;
-        ShipmentNumb: string;
-        Checked: boolean;
-        OrderLines: {
-          Description: string;
-          Quantity: number;
-        }[];
-      }[]
-    >
-  >;
+  setDisplayedShipments: React.Dispatch<React.SetStateAction<Order[]>>;
   updatedShipments: Order[];
-  setUpdatedShipments: React.Dispatch<
-    React.SetStateAction<
-      {
-        OrderId: string;
-        OrderDate: string;
-        ShipFrom: string;
-        ShipTo: string;
-        Status: string;
-        ShipperReference: string;
-        ShipmentNumb: string;
-        Checked: boolean;
-        OrderLines: {
-          Description: string;
-          Quantity: number;
-        }[];
-      }[]
-    >
-  >;
+  setUpdatedShipments: React.Dispatch<React.SetStateAction<Order[]>>;
 };
 
 export type Filter = {
   children: {
     key: string;
     values: {
-      OrderId: string;
-      OrderDate: string;
-      ShipFrom: string;
-      ShipTo: string;
-      Status: string;
-      ShipperReference: string;
-      ShipmentNumb: string;
-      Checked: boolean;
-      OrderLines: {
-        Description: string;
-        Quantity: number;
+      id: number;
+      orderDate: string;
+      shipFrom: Address;
+      shipTo: Address;
+      status: string;
+      shipperReference: number;
+      shipmentNumb: number;
+      checked: boolean;
+      orderLines: {
+        description: string;
+        quantity: number;
       }[];
     }[];
     current: boolean;

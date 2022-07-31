@@ -6,8 +6,8 @@ type Props = {
   filtersToDisplay: Filter[];
   setFiltersToDisplay: React.Dispatch<React.SetStateAction<Filter[]>>;
 };
-
 const SideOverFilters = ({ filtersToDisplay, setFiltersToDisplay }: Props) => {
+  console.log(filtersToDisplay);
   function changeFilterCheck(
     item: Filter,
     key: string,
@@ -26,8 +26,7 @@ const SideOverFilters = ({ filtersToDisplay, setFiltersToDisplay }: Props) => {
     console.log("ToChange", changedOption, unchangedOptions);
     unchangedOptions.push(changedOption);
     const sortedUpdatedOptions = unchangedOptions.sort((a: any, b: any) => {
-      //TODO: Type number
-      return a.key - b.key;
+      return a.values[0].id - b.values[0].id;
     });
     const changedFilter = {
       ...item,
@@ -36,7 +35,6 @@ const SideOverFilters = ({ filtersToDisplay, setFiltersToDisplay }: Props) => {
     const updatedFilter = [...unchangedFilters, changedFilter];
     console.log("updated", updatedFilter);
     const sortedUpdatedFilters = updatedFilter.sort((a: any, b: any) => {
-      //TODO: Type number
       return a.Id - b.Id;
     });
     return setFiltersToDisplay(sortedUpdatedFilters);
@@ -71,7 +69,7 @@ const SideOverFilters = ({ filtersToDisplay, setFiltersToDisplay }: Props) => {
                     <input
                       type="checkbox"
                       checked={options.current}
-                      onClick={() => {
+                      onChange={() => {
                         changeFilterCheck(item, options.key, options.current);
                       }}
                       className="h-4 w-4 rounded  border-gray-300 text-blue-600 focus:ring-blue-500 sm:left-6"

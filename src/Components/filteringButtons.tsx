@@ -23,7 +23,7 @@ const FilteringButtons = ({
       return setDisplayedShipments(updatedShipments);
     }
     const ordersToDisplay = updatedShipments.filter(
-      (item) => item.Status === tab
+      (item) => item.status === tab
     );
     return setDisplayedShipments(ordersToDisplay);
   }

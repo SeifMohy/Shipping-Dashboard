@@ -17,7 +17,7 @@ const DropDown = ({
       return setDisplayedShipments(updatedShipments);
     }
     const ordersToDisplay = updatedShipments.filter(
-      (item) => item.Status === option
+      (item) => item.status === option
     );
     return setDisplayedShipments(ordersToDisplay);
   }
